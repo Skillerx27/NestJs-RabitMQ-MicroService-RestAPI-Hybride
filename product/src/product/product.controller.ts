@@ -39,7 +39,22 @@ export class ProductController {
   //serving productList
   @Get('productList')
   async productList() {
-    this.client.emit('productList', 'It will send the product list');
-    return 'It will send the product list';
+    // this.client.emit('productList', 'It will send the product list');
+    // return 'It will send the product list';
+    return new Promise((resolve, reject) => {
+      this.client
+        .send('productList', {
+          msg: 'Hello',
+        })
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (error) => {
+            console.log('error', error);
+            reject(error);
+          },
+        });
+    });
   }
 }

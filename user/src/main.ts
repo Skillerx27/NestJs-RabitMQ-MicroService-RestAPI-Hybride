@@ -11,12 +11,12 @@ async function bootstrap() {
     options: {
       urls: [`amqp://localhost:5672`],
       queue: 'my_queue',
-      queueOptions: { durable: false },
+      queueOptions: { durable: true },
     },
   });
 
   await app.startAllMicroservices();
-  await app.listen(3000);
+  await app.listen(3005);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

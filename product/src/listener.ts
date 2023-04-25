@@ -8,7 +8,7 @@ async function bootstrap() {
       urls: ['amqp://localhost:15672'],
       queue: 'main_queue',
       queueOptions: {
-        durable: false,
+        durable: true,
       },
     },
   }).then(async (res) => {

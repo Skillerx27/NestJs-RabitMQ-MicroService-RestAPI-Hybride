@@ -6,7 +6,7 @@ const RMQOPTIONS = {
     urls: ['amqp://localhost:15672'],
     queue: 'main_queue',
     queueOptions: {
-      durable: false,
+      durable: true,
     },
   },
 };

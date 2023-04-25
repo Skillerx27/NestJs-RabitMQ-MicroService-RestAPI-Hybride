@@ -8,7 +8,11 @@ import {
   Param,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ClientProxy, EventPattern } from '@nestjs/microservices';
+import {
+  ClientProxy,
+  EventPattern,
+  MessagePattern,
+} from '@nestjs/microservices';
 @Controller('user')
 export class UserController {
   constructor(
@@ -54,9 +58,10 @@ export class UserController {
     this.client.emit('orderList', 'It will send the product list');
     return 'It will send the product list';
   }
-  //requesting data 
-  @EventPattern('productList')
+  //requesting data
+  @MessagePattern('productList')
   async productList(data: any) {
-    console.log('================', data);
+    const productList = data.msg; // process the data
+    return productList;
   }
 }
